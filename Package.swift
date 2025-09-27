@@ -33,6 +33,7 @@ let package = Package(
       from: "0.12.0"
     ),
     .package(
+      name: "OpenCombineJS",
       url: "https://github.com/cdeust/OpenCombineJS-Swift-6.2.git",
       from: "0.2.0"
     ),
