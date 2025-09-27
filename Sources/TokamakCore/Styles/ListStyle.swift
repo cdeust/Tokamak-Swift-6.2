@@ -78,7 +78,7 @@ public struct SidebarListStyle: ListStyle {
 }
 
 enum ListStyleKey: EnvironmentKey {
-  static let defaultValue: ListStyle = DefaultListStyle()
+  nonisolated(unsafe) static let defaultValue: ListStyle = DefaultListStyle()
 }
 
 extension EnvironmentValues {

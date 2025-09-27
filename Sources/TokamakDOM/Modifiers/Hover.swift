@@ -14,6 +14,7 @@
 
 import TokamakCore
 
+#if os(WASI)
 extension _HoverActionModifier: DOMActionModifier {
   public var listeners: [String: Listener] {
     [
@@ -24,3 +25,4 @@ extension _HoverActionModifier: DOMActionModifier {
     ]
   }
 }
+#endif

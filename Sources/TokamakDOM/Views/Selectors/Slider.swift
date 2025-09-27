@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension Slider: DOMPrimitive {
   var renderedBody: AnyView {
     let proxy = _SliderProxy(self)
@@ -65,3 +68,5 @@ extension Slider: DOMPrimitive {
     )
   }
 }
+
+#endif

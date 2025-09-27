@@ -22,7 +22,7 @@ public enum LayoutDirection: Hashable, CaseIterable {
 
 extension EnvironmentValues {
   private enum LayoutDirectionKey: EnvironmentKey {
-    static var defaultValue: LayoutDirection = .leftToRight
+    nonisolated(unsafe) static var defaultValue: LayoutDirection = .leftToRight
   }
 
   public var layoutDirection: LayoutDirection {

@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 
+#if os(WASI)
 enum ScenePhaseObserver {
   static var publisher = CurrentValueSubject<ScenePhase, Never>(.active)
 
@@ -34,3 +37,5 @@ enum ScenePhaseObserver {
     Self.closure = closure
   }
 }
+
+#endif

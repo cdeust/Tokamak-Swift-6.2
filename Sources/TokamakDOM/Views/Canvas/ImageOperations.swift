@@ -16,9 +16,12 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 
+#if os(WASI)
 private enum ImageCache {
   private static var values = [String: JSObject]()
 
@@ -97,3 +100,4 @@ extension _Canvas {
     }
   }
 }
+#endif

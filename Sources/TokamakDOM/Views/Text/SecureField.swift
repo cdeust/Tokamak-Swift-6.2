@@ -17,6 +17,7 @@
 
 import TokamakCore
 
+#if os(WASI)
 extension SecureField: DOMPrimitive where Label == Text {
   var renderedBody: AnyView {
     let proxy = _SecureFieldProxy(self)
@@ -35,3 +36,5 @@ extension SecureField: DOMPrimitive where Label == Text {
     ]))
   }
 }
+
+#endif

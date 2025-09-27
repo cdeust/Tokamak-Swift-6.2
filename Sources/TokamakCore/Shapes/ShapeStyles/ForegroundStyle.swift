@@ -31,7 +31,7 @@ public struct ForegroundStyle: ShapeStyle {
 
 extension EnvironmentValues {
   private struct ForegroundStyleKey: EnvironmentKey {
-    static let defaultValue: AnyShapeStyle? = nil
+    nonisolated(unsafe) static let defaultValue: AnyShapeStyle? = nil
   }
 
   public var _foregroundStyle: AnyShapeStyle? {

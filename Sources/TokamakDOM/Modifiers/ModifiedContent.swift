@@ -15,6 +15,7 @@
 import TokamakCore
 
 // TOOD: Add _AnyModifiedActionContent similar to TokamakStaticHTML/ModifiedContent.swift?
+#if os(WASI)
 extension ModifiedContent: DOMPrimitive where Content: View, Modifier: DOMActionModifier {
   public var renderedBody: AnyView {
     // TODO: Combine DOM nodes when possible, rather than generating arbitrary new ones
@@ -23,3 +24,5 @@ extension ModifiedContent: DOMPrimitive where Content: View, Modifier: DOMAction
     })
   }
 }
+
+#endif

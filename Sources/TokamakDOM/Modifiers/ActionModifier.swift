@@ -14,6 +14,7 @@
 
 import TokamakCore
 
+#if os(WASI)
 public protocol DOMActionModifier {
   var listeners: [String: Listener] { get }
 }
@@ -36,3 +37,4 @@ extension ModifiedContent
     return attr
   }
 }
+#endif

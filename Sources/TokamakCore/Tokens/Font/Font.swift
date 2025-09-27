@@ -14,7 +14,7 @@
 
 import Foundation
 
-public struct Font: Hashable {
+public struct Font: Hashable, @unchecked Sendable {
   let provider: AnyFontBox
 
   init(_ provider: AnyFontBox) {
@@ -23,7 +23,7 @@ public struct Font: Hashable {
 }
 
 public extension Font {
-  struct Weight: Hashable {
+  struct Weight: Hashable, Sendable {
     public let value: Int
 
     public static let ultraLight: Self = .init(value: 100)
@@ -39,7 +39,7 @@ public extension Font {
 }
 
 public extension Font {
-  enum Leading {
+  enum Leading: Sendable {
     case standard
     case tight
     case loose
@@ -74,7 +74,7 @@ public extension Font {
     )
   }
 
-  enum Design: Hashable {
+  enum Design: Hashable, Sendable {
     case `default`
     case serif
     case rounded

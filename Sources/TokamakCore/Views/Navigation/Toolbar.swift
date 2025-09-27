@@ -16,7 +16,7 @@
 //
 
 struct ToolbarKey: PreferenceKey {
-  static let defaultValue = ToolbarValue([])
+  nonisolated(unsafe) static let defaultValue = ToolbarValue([])
   static func reduce(value: inout ToolbarValue, nextValue: () -> ToolbarValue) {
     value = nextValue()
   }

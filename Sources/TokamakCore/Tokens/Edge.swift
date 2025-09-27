@@ -17,7 +17,7 @@ import Foundation
 public enum Edge: Int8, CaseIterable {
   case top, leading, bottom, trailing
 
-  public struct Set: OptionSet {
+  public struct Set: OptionSet, Sendable {
     public let rawValue: Int8
 
     public init(rawValue: Int8) {

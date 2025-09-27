@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 private extension String {
   var animatableProperty: String {
     if self == "float" {
@@ -244,3 +247,4 @@ final class DOMNode: Target {
     animate(keyframes: keyframes, with: animation)
   }
 }
+#endif

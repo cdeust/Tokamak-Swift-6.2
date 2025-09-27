@@ -16,10 +16,13 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension _Canvas {
   func resolveSymbol(
     _ symbolID: AnyHashable,
@@ -112,3 +115,4 @@ extension _Canvas {
     }
   }
 }
+#endif

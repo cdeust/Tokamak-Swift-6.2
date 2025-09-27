@@ -18,7 +18,7 @@
 import Foundation
 
 @frozen
-public struct AnyTransition {
+public struct AnyTransition: @unchecked Sendable {
   fileprivate let box: _AnyTransitionBox
 
   private init(_ box: _AnyTransitionBox) {

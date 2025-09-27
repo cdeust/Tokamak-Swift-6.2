@@ -1,19 +1,18 @@
-// swift-tools-version:5.6
+// swift-tools-version:6.2
 
 import PackageDescription
 
 let package = Package(
   name: "Tokamak",
   platforms: [
-    .macOS(.v11),
+    .macOS(.v15),
     .iOS(.v13),
   ],
   products: [
-    // Products define the executables and libraries produced by a package,
-    // and make them visible to other packages.
-    .executable(
-      name: "TokamakDemo",
-      targets: ["TokamakDemo"]
+    // Core libraries for web development - NO GTK dependencies
+    .library(
+      name: "TokamakCore",
+      targets: ["TokamakCore"]
     ),
     .library(
       name: "TokamakDOM",
@@ -22,26 +21,6 @@ let package = Package(
     .library(
       name: "TokamakStaticHTML",
       targets: ["TokamakStaticHTML"]
-    ),
-    .executable(
-      name: "TokamakStaticHTMLDemo",
-      targets: ["TokamakStaticHTMLDemo"]
-    ),
-    .library(
-      name: "TokamakGTK",
-      targets: ["TokamakGTK"]
-    ),
-    .executable(
-      name: "TokamakGTKDemo",
-      targets: ["TokamakGTKDemo"]
-    ),
-    .library(
-      name: "TokamakShim",
-      targets: ["TokamakShim"]
-    ),
-    .executable(
-      name: "TokamakStaticHTMLBenchmark",
-      targets: ["TokamakStaticHTMLBenchmark"]
     ),
   ],
   dependencies: [
@@ -56,10 +35,6 @@ let package = Package(
     .package(
       url: "https://github.com/swiftwasm/OpenCombineJS.git",
       from: "0.2.0"
-    ),
-    .package(
-      url: "https://github.com/google/swift-benchmark",
-      from: "0.1.2"
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -78,71 +53,25 @@ let package = Package(
           name: "OpenCombineShim",
           package: "OpenCombine"
         ),
+      ],
+      swiftSettings: [
+        .enableUpcomingFeature("StrictConcurrency"),
+        .unsafeFlags(["-suppress-warnings"])
       ]
     ),
     .target(
       name: "TokamakShim",
       dependencies: [
         .target(name: "TokamakDOM", condition: .when(platforms: [.wasi])),
-        .target(name: "TokamakGTK", condition: .when(platforms: [.linux])),
       ]
-    ),
-    .systemLibrary(
-      name: "CGTK",
-      pkgConfig: "gtk+-3.0",
-      providers: [
-        .apt(["libgtk+-3.0", "gtk+-3.0"]),
-        // .yum(["gtk3-devel"]),
-        .brew(["gtk+3"]),
-      ]
-    ),
-    .systemLibrary(
-      name: "CGDK",
-      pkgConfig: "gdk-3.0",
-      providers: [
-        .apt(["libgtk+-3.0", "gtk+-3.0"]),
-        // .yum(["gtk3-devel"]),
-        .brew(["gtk+3"]),
-      ]
-    ),
-    .target(
-      name: "TokamakGTKCHelpers",
-      dependencies: ["CGTK"]
-    ),
-    .target(
-      name: "TokamakGTK",
-      dependencies: [
-        "TokamakCore", "CGTK", "CGDK", "TokamakGTKCHelpers",
-        .product(
-          name: "OpenCombineShim",
-          package: "OpenCombine"
-        ),
-      ]
-    ),
-    .executableTarget(
-      name: "TokamakGTKDemo",
-      dependencies: ["TokamakGTK"],
-      resources: [.copy("logo-header.png")]
     ),
     .target(
       name: "TokamakStaticHTML",
       dependencies: [
         "TokamakCore",
-      ]
-    ),
-    .executableTarget(
-      name: "TokamakCoreBenchmark",
-      dependencies: [
-        .product(name: "Benchmark", package: "swift-benchmark"),
-        "TokamakCore",
-        "TokamakTestRenderer",
-      ]
-    ),
-    .executableTarget(
-      name: "TokamakStaticHTMLBenchmark",
-      dependencies: [
-        .product(name: "Benchmark", package: "swift-benchmark"),
-        "TokamakStaticHTML",
+      ],
+      swiftSettings: [
+        .enableUpcomingFeature("StrictConcurrency")
       ]
     ),
     .target(
@@ -165,30 +94,9 @@ let package = Package(
           condition: .when(platforms: [.wasi])
         ),
         "OpenCombineJS",
-      ]
-    ),
-    .executableTarget(
-      name: "TokamakDemo",
-      dependencies: [
-        "TokamakShim",
-        .product(
-          name: "JavaScriptKit",
-          package: "JavaScriptKit",
-          condition: .when(platforms: [.wasi])
-        ),
       ],
-      resources: [.copy("logo-header.png")],
-      linkerSettings: [
-        .unsafeFlags(
-          ["-Xlinker", "--stack-first", "-Xlinker", "-z", "-Xlinker", "stack-size=16777216"],
-          .when(platforms: [.wasi])
-        ),
-      ]
-    ),
-    .executableTarget(
-      name: "TokamakStaticHTMLDemo",
-      dependencies: [
-        "TokamakStaticHTML",
+      swiftSettings: [
+        .enableUpcomingFeature("StrictConcurrency")
       ]
     ),
     .target(

@@ -15,12 +15,15 @@
 //  Created by Max Desiatov on 11/04/2020.
 //
 
+#if os(WASI)
 import JavaScriptEventLoop
 import JavaScriptKit
 import OpenCombineJS
+#endif
 @_spi(TokamakCore) import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 public typealias Sanitizers = TokamakStaticHTML.Sanitizers
 
 extension EnvironmentValues {
@@ -38,6 +41,7 @@ extension EnvironmentValues {
     return environment
   }
 }
+#endif
 
 /** `SpacerContainer` is part of TokamakDOM, as not all renderers will handle flexible
  sizing the way browsers do. Their parent element could already know that if a child is
@@ -62,6 +66,7 @@ private extension AnyView {
   }
 }
 
+#if os(WASI)
 let global = JSObject.global
 let window = global.window.object!
 let matchMediaDarkScheme = window.matchMedia!("(prefers-color-scheme: dark)").object!
@@ -69,7 +74,9 @@ let log = global.console.object!.log.function!
 let document = global.document.object!
 let body = document.body.object!
 let head = document.head.object!
+#endif
 
+#if os(WASI)
 func appendRootStyle(_ rootNode: JSObject) {
   rootNode.style = .string(rootNodeStyles)
   let rootStyle = document.createElement!("style").object!
@@ -88,9 +95,11 @@ final class DOMRenderer: Renderer {
     rootRef = ref
     appendRootStyle(ref)
 
+    #if os(WASI)
     if #available(macOS 10.15, *) {
       JavaScriptEventLoop.installGlobalExecutor()
     }
+    #endif
 
     let scheduler = JSScheduler()
     self.scheduler = scheduler
@@ -296,3 +305,4 @@ final class DOMRenderer: Renderer {
 protocol DOMPrimitive {
   var renderedBody: AnyView { get }
 }
+#endif

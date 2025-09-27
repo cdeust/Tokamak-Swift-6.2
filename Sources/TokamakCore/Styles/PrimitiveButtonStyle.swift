@@ -115,7 +115,7 @@ extension EnvironmentValues {
       case buttonStyle(AnyButtonStyle)
     }
 
-    public static let defaultValue: ButtonStyleKeyValue = .primitiveButtonStyle(
+    nonisolated(unsafe) public static let defaultValue: ButtonStyleKeyValue = .primitiveButtonStyle(
       .init(DefaultButtonStyle())
     )
   }

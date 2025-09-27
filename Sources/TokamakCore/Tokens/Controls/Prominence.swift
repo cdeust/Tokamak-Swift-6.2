@@ -22,7 +22,7 @@ public enum Prominence: Hashable {
 
 extension EnvironmentValues {
   private enum HeaderProminenceKey: EnvironmentKey {
-    static var defaultValue: Prominence = .standard
+    nonisolated(unsafe) static var defaultValue: Prominence = .standard
   }
 
   public var headerProminence: Prominence {

@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension _PickerContainer: DOMPrimitive {
   var renderedBody: AnyView {
     AnyView(HTML("label") {
@@ -48,3 +51,5 @@ extension _PickerElement: DOMPrimitive {
     })
   }
 }
+
+#endif

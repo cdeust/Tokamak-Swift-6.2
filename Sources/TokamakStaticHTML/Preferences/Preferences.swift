@@ -18,7 +18,7 @@
 import TokamakCore
 
 public struct HTMLTitlePreferenceKey: PreferenceKey {
-  public static var defaultValue: String = ""
+  nonisolated(unsafe) public static var defaultValue: String = ""
 
   public static func reduce(value: inout String, nextValue: () -> String) {
     value = nextValue()
@@ -26,7 +26,7 @@ public struct HTMLTitlePreferenceKey: PreferenceKey {
 }
 
 public struct HTMLMetaPreferenceKey: PreferenceKey {
-  public static var defaultValue: [HTMLMeta.MetaTag] = []
+  nonisolated(unsafe) public static var defaultValue: [HTMLMeta.MetaTag] = []
 
   public static func reduce(
     value: inout [HTMLMeta.MetaTag],

@@ -16,9 +16,12 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 
+#if os(WASI)
 extension _Canvas {
   func resolveText(in canvasContext: JSObject)
     -> (Text, EnvironmentValues) -> GraphicsContext.ResolvedText
@@ -139,3 +142,4 @@ extension _Canvas {
       )
   }
 }
+#endif

@@ -18,6 +18,7 @@
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 public struct DefaultToggleStyle: ToggleStyle {
   public func makeBody(configuration: Configuration) -> some View {
     CheckboxToggleStyle().makeBody(configuration: configuration)
@@ -50,3 +51,4 @@ public struct SwitchToggleStyle: ToggleStyle {
     CheckboxToggleStyle().makeBody(configuration: configuration)
   }
 }
+#endif

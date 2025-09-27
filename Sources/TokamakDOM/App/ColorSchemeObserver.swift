@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 
+#if os(WASI)
 enum ColorSchemeObserver {
   static var publisher = CurrentValueSubject<ColorScheme, Never>(
     .init(matchMediaDarkScheme: matchMediaDarkScheme)
@@ -40,3 +43,5 @@ enum ColorSchemeObserver {
     }
   }
 }
+
+#endif

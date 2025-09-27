@@ -173,7 +173,7 @@ public extension AppStorage where Value: ExpressibleByNilLiteral {
 
 /// The renderer is responsible for making sure a default is set at the root of the App.
 struct DefaultAppStorageEnvironmentKey: EnvironmentKey {
-  static let defaultValue: _StorageProvider? = nil
+  nonisolated(unsafe) static let defaultValue: _StorageProvider? = nil
 }
 
 public extension EnvironmentValues {

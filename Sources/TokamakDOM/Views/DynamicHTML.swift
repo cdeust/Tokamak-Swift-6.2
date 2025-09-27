@@ -15,10 +15,13 @@
 //  Created by Carson Katri on 7/31/20.
 //
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 public typealias HTML = TokamakStaticHTML.HTML
 
 public typealias Listener = (JSObject) -> ()
@@ -89,3 +92,5 @@ public extension DynamicHTML where Content == EmptyView {
     self = DynamicHTML(tag, attributes, listeners: listeners) { EmptyView() }
   }
 }
+
+#endif

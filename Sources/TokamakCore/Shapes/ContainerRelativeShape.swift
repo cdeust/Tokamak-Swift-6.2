@@ -64,7 +64,7 @@ extension ContainerRelativeShape: InsettableShape {
 
 private extension EnvironmentValues {
   enum ContainerShapeKey: EnvironmentKey {
-    static let defaultValue: (CGRect, GeometryProxy) -> Path? = { _, _ in nil }
+    nonisolated(unsafe) static let defaultValue: (CGRect, GeometryProxy) -> Path? = { _, _ in nil }
   }
 
   var _containerShape: (CGRect, GeometryProxy) -> Path? {

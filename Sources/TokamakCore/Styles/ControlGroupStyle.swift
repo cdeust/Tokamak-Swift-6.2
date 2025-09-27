@@ -82,7 +82,7 @@ public struct _AnyControlGroupStyle: ControlGroupStyle {
 
 extension EnvironmentValues {
   private enum ControlGroupStyleKey: EnvironmentKey {
-    static let defaultValue = _AnyControlGroupStyle(AutomaticControlGroupStyle())
+    nonisolated(unsafe) static let defaultValue = _AnyControlGroupStyle(AutomaticControlGroupStyle())
   }
 
   var controlGroupStyle: _AnyControlGroupStyle {

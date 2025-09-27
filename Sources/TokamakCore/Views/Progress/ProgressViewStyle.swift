@@ -79,7 +79,7 @@ public struct _AnyProgressViewStyle: ProgressViewStyle {
 
 extension EnvironmentValues {
   private enum ProgressViewStyleKey: EnvironmentKey {
-    static let defaultValue = _AnyProgressViewStyle(DefaultProgressViewStyle())
+    nonisolated(unsafe) static let defaultValue = _AnyProgressViewStyle(DefaultProgressViewStyle())
   }
 
   var progressViewStyle: _AnyProgressViewStyle {

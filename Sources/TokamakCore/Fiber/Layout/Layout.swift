@@ -390,7 +390,7 @@ final class ConcreteLayoutBox<L: Layout>: AnyLayoutBox {
 }
 
 @frozen
-public struct AnyLayout: Layout {
+public struct AnyLayout: Layout, @unchecked Sendable {
   var storage: AnyLayoutBox
 
   public init<L>(_ layout: L) where L: Layout {

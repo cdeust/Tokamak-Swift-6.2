@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 @_spi(TokamakCore) import TokamakCore
 
+#if os(WASI)
 public extension View {
   /** Allows capturing DOM references of host views. The resulting reference is written
    to a given `binding`.
@@ -28,3 +31,4 @@ public extension View {
     return _targetRef(targetBinding)
   }
 }
+#endif

@@ -15,6 +15,7 @@
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension NavigationLink: DOMPrimitive {
   var renderedBody: AnyView {
     let proxy = _NavigationLinkProxy(self)
@@ -34,3 +35,5 @@ extension NavigationLink: DOMPrimitive {
     )
   }
 }
+
+#endif

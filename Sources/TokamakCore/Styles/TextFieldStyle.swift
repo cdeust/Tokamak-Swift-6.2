@@ -64,7 +64,7 @@ public extension TextFieldStyle {
 }
 
 enum TextFieldStyleKey: EnvironmentKey {
-  static let defaultValue: _AnyTextFieldStyle = DefaultTextFieldStyle()
+  nonisolated(unsafe) static let defaultValue: _AnyTextFieldStyle = DefaultTextFieldStyle()
 }
 
 extension EnvironmentValues {

@@ -1,0 +1,5 @@
+module TokamakGTKCHelpers {
+    header "type_check.h"
+
+    export *
+}

@@ -24,7 +24,7 @@ public enum ControlSize: CaseIterable, Hashable {
 
 extension EnvironmentValues {
   private enum ControlSizeKey: EnvironmentKey {
-    static var defaultValue: ControlSize = .regular
+    nonisolated(unsafe) static var defaultValue: ControlSize = .regular
   }
 
   public var controlSize: ControlSize {

@@ -13,7 +13,10 @@
 // limitations under the License.
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
+#if os(WASI)
 @_spi(TokamakCore) import TokamakCore
 import TokamakStaticHTML
 
@@ -80,3 +83,5 @@ struct _GeometryReader<Content: View>: View {
     }
   }
 }
+
+#endif

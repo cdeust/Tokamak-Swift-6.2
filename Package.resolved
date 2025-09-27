@@ -1,4 +1,5 @@
 {
+  "originHash" : "41373b1ec7ab3b1667cb6afde834b5c998aed83e20b1ffb52e9ff75a385f5324",
   "pins" : [
     {
       "identity" : "javascriptkit",
@@ -28,24 +29,6 @@
       }
     },
     {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
-      "state" : {
-        "revision" : "f3c9084a71ef4376f2fabbdf1d3d90a49f1fabdb",
-        "version" : "1.1.2"
-      }
-    },
-    {
-      "identity" : "swift-benchmark",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/swift-benchmark",
-      "state" : {
-        "revision" : "8163295f6fe82356b0bcf8e1ab991645de17d096",
-        "version" : "0.1.2"
-      }
-    },
-    {
       "identity" : "swift-snapshot-testing",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -55,5 +38,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

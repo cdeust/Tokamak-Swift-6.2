@@ -91,7 +91,7 @@ extension ForEach: ParentView {
 extension ForEach: GroupView {}
 
 struct _IDKey: EnvironmentKey {
-  static let defaultValue: AnyHashable? = nil
+  nonisolated(unsafe) static let defaultValue: AnyHashable? = nil
 }
 
 public extension EnvironmentValues {

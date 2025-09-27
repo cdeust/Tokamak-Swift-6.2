@@ -15,7 +15,7 @@
 //  Created by Max Desiatov on 16/10/2018.
 //
 
-public struct Color: Hashable, Equatable {
+public struct Color: Hashable, Equatable, @unchecked Sendable {
   public static func == (lhs: Self, rhs: Self) -> Bool {
     lhs.provider == rhs.provider
   }

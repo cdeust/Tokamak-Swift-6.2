@@ -16,9 +16,12 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 
+#if os(WASI)
 extension EnvironmentValues {
   private enum InAnimatingTimelineViewKey: EnvironmentKey {
     static let defaultValue: Bool = false
@@ -125,3 +128,5 @@ extension TimelineView: DOMPrimitive where Content: View {
     AnyView(_TimelineView(parent: self))
   }
 }
+
+#endif

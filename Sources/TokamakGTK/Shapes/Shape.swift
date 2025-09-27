@@ -17,6 +17,7 @@
 
 import CGDK
 import CGTK
+import CoreGraphics
 import Foundation
 import TokamakCore
 
@@ -143,6 +144,8 @@ extension CGLineJoin {
       return cairo_line_join_t(rawValue: 1) /* CAIRO_LINE_JOIN_ROUND */
     case .bevel:
       return cairo_line_join_t(rawValue: 2) /* CAIRO_LINE_JOIN_BEVEL */
+    @unknown default:
+      return cairo_line_join_t(rawValue: 0) /* CAIRO_LINE_JOIN_MITER */
     }
   }
 }
@@ -156,6 +159,8 @@ extension CGLineCap {
       return cairo_line_cap_t(rawValue: 1) /* CAIRO_LINE_CAP_ROUND */
     case .square:
       return cairo_line_cap_t(rawValue: 2) /* CAIRO_LINE_CAP_SQUARE */
+    @unknown default:
+      return cairo_line_cap_t(rawValue: 0) /* CAIRO_LINE_CAP_BUTT */
     }
   }
 }

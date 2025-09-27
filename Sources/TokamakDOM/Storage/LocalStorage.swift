@@ -15,10 +15,13 @@
 //  Created by Carson Katri on 7/20/20.
 //
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 import TokamakCore
 
+#if os(WASI)
 private let rootPublisher = ObservableObjectPublisher()
 private let localStorage = JSObject.global.localStorage.object!
 
@@ -41,3 +44,5 @@ public class LocalStorage: WebStorage, _StorageProvider {
 
   public let publisher: ObservableObjectPublisher
 }
+
+#endif

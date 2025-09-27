@@ -16,9 +16,12 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 
+#if os(WASI)
 extension _Canvas {
   func clip(to path: Path, in canvasContext: JSObject) {
     _ = canvasContext.beginPath!()
@@ -171,3 +174,4 @@ private extension FixedRoundedRect {
     )
   }
 }
+#endif

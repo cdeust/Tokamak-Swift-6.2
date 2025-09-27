@@ -15,11 +15,14 @@
 //  Created by Carson Katri on 7/16/20.
 //
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 public extension App {
   static func _launch(_ app: Self, with configuration: _AppConfiguration) {
     switch configuration.reconciler {
@@ -74,3 +77,4 @@ public extension App {
     ColorSchemeObserver.publisher.eraseToAnyPublisher()
   }
 }
+#endif

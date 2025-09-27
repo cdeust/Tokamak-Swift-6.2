@@ -23,7 +23,7 @@ public enum TextAlignment: Hashable, CaseIterable {
 
 extension EnvironmentValues {
   private struct _MultilineTextAlignmentKey: EnvironmentKey {
-    static var defaultValue: TextAlignment = .leading
+    nonisolated(unsafe) static var defaultValue: TextAlignment = .leading
   }
 
   public var multilineTextAlignment: TextAlignment {

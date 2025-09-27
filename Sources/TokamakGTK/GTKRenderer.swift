@@ -23,7 +23,7 @@ extension EnvironmentValues {
   /// Returns default settings for the GTK environment
   static var defaultEnvironment: Self {
     var environment = EnvironmentValues()
-    environment[_ColorSchemeKey] = .light
+    environment[_ColorSchemeKey.self] = .light
     // environment._defaultAppStorage = LocalStorage.standard
     // _DefaultSceneStorageProvider.default = SessionStorage.standard
 
@@ -33,18 +33,20 @@ extension EnvironmentValues {
 
 final class GTKRenderer: Renderer {
   private(set) var reconciler: StackReconciler<GTKRenderer>?
-  private var gtkAppRef: UnsafeMutablePointer<GtkApplication>
-  static var sharedWindow: UnsafeMutablePointer<GtkWidget>!
+  nonisolated(unsafe) private var gtkAppRef: UnsafeMutablePointer<GtkApplication>
+  nonisolated(unsafe) static var sharedWindow: UnsafeMutablePointer<GtkWidget>!
 
   init<A: App>(
     _ app: A,
     _ rootEnvironment: EnvironmentValues? = nil
   ) {
-    gtkAppRef = gtk_application_new(nil, G_APPLICATION_FLAGS_NONE)
+    gtkAppRef = gtk_application_new(nil, G_APPLICATION_DEFAULT_FLAGS)
 
     gtkAppRef.withMemoryRebound(to: GApplication.self, capacity: 1) { gApp in
-      gApp.connect(signal: "activate") {
-        let window: UnsafeMutablePointer<GtkWidget>
+      gApp.connect(signal: "activate") { [weak self] in
+        guard let self else { return }
+
+        nonisolated(unsafe) let window: UnsafeMutablePointer<GtkWidget>
         window = gtk_application_window_new(self.gtkAppRef)
         window.withMemoryRebound(to: GtkWindow.self, capacity: 1) {
           gtk_window_set_default_size($0, 200, 100)
@@ -59,9 +61,11 @@ final class GTKRenderer: Renderer {
           environment: .defaultEnvironment.merging(rootEnvironment),
           renderer: self,
           scheduler: { next in
+            nonisolated(unsafe) let capturedWindow = window
+            nonisolated(unsafe) let capturedNext = next
             DispatchQueue.main.async {
-              next()
-              gtk_widget_show_all(window)
+              capturedNext()
+              gtk_widget_show_all(capturedWindow)
             }
           }
         )

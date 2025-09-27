@@ -16,10 +16,13 @@
 //
 
 import struct Foundation.Date
+#if os(WASI)
 import JavaScriptKit
+#endif
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension DatePicker: DOMPrimitive {
   var renderedBody: AnyView {
     let proxy = _DatePickerProxy(self)
@@ -125,3 +128,5 @@ extension DatePickerComponents {
     }
   }
 }
+
+#endif

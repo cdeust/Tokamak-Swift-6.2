@@ -26,7 +26,7 @@ public extension View {
 }
 
 private struct DomTextSanitizerKey: EnvironmentKey {
-  static let defaultValue: _DomTextSanitizer = Sanitizers.HTML.encode
+  nonisolated(unsafe) static let defaultValue: _DomTextSanitizer = Sanitizers.HTML.encode
 }
 
 public extension EnvironmentValues {

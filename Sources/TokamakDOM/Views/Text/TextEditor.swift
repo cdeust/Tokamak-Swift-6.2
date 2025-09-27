@@ -14,6 +14,7 @@
 
 import TokamakCore
 
+#if os(WASI)
 extension TextEditor: DOMPrimitive {
   var renderedBody: AnyView {
     let proxy = _TextEditorProxy(self)
@@ -29,3 +30,5 @@ extension TextEditor: DOMPrimitive {
     ]))
   }
 }
+
+#endif

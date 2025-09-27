@@ -15,10 +15,13 @@
 //  Created by Carson Katri on 7/20/20.
 //
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 import TokamakCore
 
+#if os(WASI)
 private let sessionStorage = JSObject.global.sessionStorage.object!
 
 public class SessionStorage: WebStorage, _StorageProvider {
@@ -32,3 +35,5 @@ public class SessionStorage: WebStorage, _StorageProvider {
 
   public let publisher = ObservableObjectPublisher()
 }
+
+#endif

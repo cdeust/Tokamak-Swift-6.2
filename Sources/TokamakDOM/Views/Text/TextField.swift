@@ -18,6 +18,7 @@
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension TextField: DOMPrimitive where Label == Text {
   func css(for style: _AnyTextFieldStyle) -> String {
     if style is PlainTextFieldStyle {
@@ -63,3 +64,5 @@ extension TextField: DOMPrimitive where Label == Text {
     ]))
   }
 }
+
+#endif

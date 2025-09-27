@@ -15,10 +15,13 @@
 //  Created by Carson Katri on 7/21/20.
 //
 
+#if os(WASI)
 import JavaScriptKit
+#endif
 import OpenCombineShim
 import TokamakCore
 
+#if os(WASI)
 protocol WebStorage {
   var storage: JSObject { get }
   init()
@@ -76,3 +79,5 @@ extension WebStorage {
     getItem(key: key) { $0 }
   }
 }
+
+#endif

@@ -18,6 +18,7 @@
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension DisclosureGroup: DOMPrimitive {
   var chevron: some View {
     DynamicHTML(
@@ -91,3 +92,5 @@ extension DisclosureGroup: DOMPrimitive {
     })
   }
 }
+
+#endif

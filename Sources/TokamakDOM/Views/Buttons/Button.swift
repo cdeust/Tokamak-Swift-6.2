@@ -18,6 +18,7 @@
 import TokamakCore
 import TokamakStaticHTML
 
+#if os(WASI)
 extension _Button: DOMPrimitive {
   @_spi(TokamakCore)
   public var renderedBody: AnyView {
@@ -82,3 +83,5 @@ extension _PrimitiveButtonStyleBody: DOMPrimitive {
     }.font(font))
   }
 }
+
+#endif

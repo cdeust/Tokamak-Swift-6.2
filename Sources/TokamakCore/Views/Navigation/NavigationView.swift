@@ -77,7 +77,7 @@ public struct _NavigationViewProxy<Content: View> {
 }
 
 struct NavigationDestinationKey: EnvironmentKey {
-  public static let defaultValue: Binding<AnyView>? = nil
+  nonisolated(unsafe) public static let defaultValue: Binding<AnyView>? = nil
 }
 
 extension EnvironmentValues {
@@ -99,7 +99,7 @@ struct NavigationTitleKey: PreferenceKey {
 }
 
 struct NavigationBarItemKey: PreferenceKey {
-  static let defaultValue: NavigationBarItem = .init(displayMode: .automatic)
+  nonisolated(unsafe) static let defaultValue: NavigationBarItem = .init(displayMode: .automatic)
   static func reduce(value: inout NavigationBarItem, nextValue: () -> NavigationBarItem) {
     value = nextValue()
   }

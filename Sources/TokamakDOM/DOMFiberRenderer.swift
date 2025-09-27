@@ -16,9 +16,11 @@
 //
 
 import Foundation
+#if os(WASI)
 import JavaScriptEventLoop
 import JavaScriptKit
 import OpenCombineJS
+#endif
 import OpenCombineShim
 
 @_spi(TokamakCore)
@@ -27,6 +29,7 @@ import TokamakCore
 @_spi(TokamakStaticHTML)
 import TokamakStaticHTML
 
+#if os(WASI)
 public final class DOMElement: FiberElement {
   var reference: JSObject?
 
@@ -98,9 +101,11 @@ public struct DOMFiberRenderer: FiberRenderer {
   }
 
   public init(_ rootSelector: String, useDynamicLayout: Bool = true) {
+    #if os(WASI)
     if #available(macOS 10.15, *) {
       JavaScriptEventLoop.installGlobalExecutor()
     }
+    #endif
 
     guard let reference = document.querySelector!(rootSelector).object else {
       fatalError("""
@@ -344,3 +349,4 @@ extension _PrimitiveButtonStyleBody: DOMNodeConvertible {
     ["pointerup": { _ in self.action() }]
   }
 }
+#endif
