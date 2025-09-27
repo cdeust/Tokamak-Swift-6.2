@@ -29,7 +29,7 @@ let package = Package(
       from: "0.15.0"
     ),
     .package(
-      url: "https://github.com/OpenCombine/OpenCombine.git",
+      url: "https://github.com/cdeust/OpenCombine-Swift-6.2.git",
       from: "0.12.0"
     ),
     .package(
