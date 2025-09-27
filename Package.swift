@@ -22,6 +22,10 @@ let package = Package(
       name: "TokamakStaticHTML",
       targets: ["TokamakStaticHTML"]
     ),
+    .library(
+      name: "TokamakShim",
+      targets: ["TokamakShim"]
+    ),
   ],
   dependencies: [
     .package(path: "../JavaScriptKit-Swift-6.2"),
