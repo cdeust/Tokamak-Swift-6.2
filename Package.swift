@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
   name: "Tokamak",
   platforms: [
-    .macOS(.v15),
+    .macOS("26.0"),
     .iOS(.v13),
   ],
   products: [
@@ -24,20 +24,9 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(
-      url: "https://github.com/swiftwasm/JavaScriptKit.git",
-      from: "0.15.0"
-    ),
-    .package(
-      name: "OpenCombine",
-      url: "https://github.com/cdeust/OpenCombine-Swift-6.2.git",
-      from: "0.12.0"
-    ),
-    .package(
-      name: "OpenCombineJS",
-      url: "https://github.com/cdeust/OpenCombineJS-Swift-6.2.git",
-      from: "0.2.0"
-    ),
+    .package(path: "../JavaScriptKit-Swift-6.2"),
+    .package(path: "../OpenCombine-Swift-6.2"),
+    .package(path: "../OpenCombineJS-Swift-6.2"),
     .package(
       url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
       from: "1.9.0"
@@ -53,7 +42,7 @@ let package = Package(
       dependencies: [
         .product(
           name: "OpenCombineShim",
-          package: "OpenCombine"
+          package: "OpenCombine-Swift-6.2"
         ),
       ],
       swiftSettings: [
@@ -83,19 +72,22 @@ let package = Package(
         "TokamakStaticHTML",
         .product(
           name: "OpenCombineShim",
-          package: "OpenCombine"
+          package: "OpenCombine-Swift-6.2"
         ),
         .product(
           name: "JavaScriptKit",
-          package: "JavaScriptKit",
+          package: "JavaScriptKit-Swift-6.2",
           condition: .when(platforms: [.wasi])
         ),
         .product(
           name: "JavaScriptEventLoop",
-          package: "JavaScriptKit",
+          package: "JavaScriptKit-Swift-6.2",
           condition: .when(platforms: [.wasi])
         ),
-        "OpenCombineJS",
+        .product(
+          name: "OpenCombineJS",
+          package: "OpenCombineJS-Swift-6.2"
+        ),
       ],
       swiftSettings: [
         .enableUpcomingFeature("StrictConcurrency")

@@ -1,33 +1,6 @@
 {
-  "originHash" : "41373b1ec7ab3b1667cb6afde834b5c998aed83e20b1ffb52e9ff75a385f5324",
+  "originHash" : "3136871e4c5101e51a218c13cad6551263782b1a8524577d2d16350401ac0e8c",
   "pins" : [
-    {
-      "identity" : "javascriptkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftwasm/JavaScriptKit.git",
-      "state" : {
-        "revision" : "2d7bc960eed438dce7355710ece43fa004bbb3ac",
-        "version" : "0.15.0"
-      }
-    },
-    {
-      "identity" : "opencombine",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OpenCombine/OpenCombine.git",
-      "state" : {
-        "revision" : "9cf67e363738dbab61b47fb5eaed78d3db31e5ee",
-        "version" : "0.13.0"
-      }
-    },
-    {
-      "identity" : "opencombinejs",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftwasm/OpenCombineJS.git",
-      "state" : {
-        "revision" : "e574e418ba468ff5c2d4c499eb56f108aeb4d2ba",
-        "version" : "0.2.0"
-      }
-    },
     {
       "identity" : "swift-snapshot-testing",
       "kind" : "remoteSourceControl",
@@ -35,6 +8,15 @@
       "state" : {
         "revision" : "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
         "version" : "1.9.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "4799286537280063c85a32f09884cfbca301b1a1",
+        "version" : "602.0.0"
       }
     }
   ],
